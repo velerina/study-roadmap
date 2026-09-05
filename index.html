@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Velerina Study Roadmap</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f4f8ff;
+    color: #17365d;
+}
+
+/* HEADER */
+
+header {
+    background: linear-gradient(135deg, #0757b8, #4ba3ff);
+    color: white;
+    padding: 28px 20px;
+    border-radius: 0 0 28px 28px;
+}
+
+header h1 {
+    font-size: 27px;
+}
+
+header p {
+    margin-top: 7px;
+    opacity: .9;
+}
+
+/* CONTAINER */
+
+.container {
+    width: 92%;
+    max-width: 1000px;
+    margin: 25px auto;
+}
+
+/* CARD */
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 20px rgba(0,0,0,.06);
+}
+
+.card h2 {
+    color: #0757b8;
+    margin-bottom: 15px;
+}
+
+/* PROGRESS */
+
+.progress-box {
+    margin-top: 10px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 15px;
+    background: #e4edf9;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg,#126bd0,#52a8ff);
+    transition: .4s;
+}
+
+/* STATS */
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.stat {
+    background: #f1f7ff;
+    padding: 15px;
+    border-radius: 15px;
+    text-align: center;
+}
+
+.stat b {
+    display: block;
+    font-size: 24px;
+    color: #0757b8;
+}
+
+/* SCHEDULE */
+
+.schedule {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 12px;
+    padding: 14px 0;
+    border-bottom: 1px solid #e8eef7;
+}
+
+.day {
+    font-weight: bold;
+    color: #0757b8;
+}
+
+.time {
+    font-size: 13px;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* INPUT */
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 11px;
+    border: 1px solid #c9ddf5;
+    border-radius: 10px;
+    margin: 6px 0 12px;
+    outline: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #1682e8;
+}
+
+textarea {
+    min-height: 90px;
+}
+
+/* BUTTON */
+
+button {
+    border: none;
+    background: #126bd0;
+    color: white;
+    padding: 11px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button:hover {
+    background: #0757b8;
+}
+
+button.danger {
+    background: #e05252;
+}
+
+/* ROADMAP */
+
+.roadmap {
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+    max-height: 450px;
+    overflow-y: auto;
+}
+
+.video {
+    padding: 13px;
+    border-radius: 12px;
+    background: #f2f7ff;
+    border: 1px solid #dceafa;
+    cursor: pointer;
+}
+
+.video:hover {
+    background: #e4f0ff;
+}
+
+.video.done {
+    background: #dff5e8;
+    border-color: #9bd6b0;
+}
+
+.video small {
+    display: block;
+    color: #777;
+    margin-top: 5px;
+}
+
+/* HISTORY */
+
+.history-item {
+    background: #f4f8ff;
+    padding: 15px;
+    border-radius: 14px;
+    margin-bottom: 10px;
+}
+
+.badge {
+    display: inline-block;
+    background: #dceeff;
+    color: #0757b8;
+    padding: 5px 9px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin: 6px 0;
+}
+
+/* ALARM */
+
+.alarm {
+    position: fixed;
+    inset: 0;
+    background: rgba(5,35,70,.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.alarm-box {
+    background: white;
+    width: 90%;
+    max-width: 420px;
+    padding: 30px;
+    border-radius: 24px;
+    text-align: center;
+}
+
+.alarm-box h2 {
+    color: #0757b8;
+}
+
+.motivation {
+    font-size: 19px;
+    font-weight: bold;
+    margin: 18px 0;
+}
+
+/* MOBILE */
+
+@media(max-width:650px) {
+
+    .stats {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .roadmap {
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    .schedule {
+        grid-template-columns: 75px 1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>📚 Velerina Study Roadmap</h1>
+    <p>UTBK mode: ON 🚀</p>
+</header>
+
+<div class="container">
+
+<!-- DASHBOARD -->
+
+<div class="card">
+
+    <h2>💙 Dashboard</h2>
+
+    <p>
+        Jangan lupa tujuan awalnya.
+        Pelan-pelan tapi konsisten.
+    </p>
+
+    <div class="stats">
+
+        <div class="stat">
+            <b id="progressNumber">0%</b>
+            Progress Funda
+        </div>
+
+        <div class="stat">
+            <b id="completedNumber">0</b>
+            Video selesai
+        </div>
+
+        <div class="stat">
+            <b id="historyNumber">0</b>
+            Histori belajar
+        </div>
+
+    </div>
+
+    <div class="progress-box">
+
+        <p style="margin:12px 0 6px;">
+            Fundamental Matematika
+        </p>
+
+        <div class="progress-bar">
+            <div
+                class="progress-fill"
+                id="progressFill">
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JADWAL -->
+
+<div class="card">
+
+<h2>📅 Jadwal Mingguan</h2>
+
+<div class="schedule">
+    <div class="day">Senin</div>
+    <div>
+        <b>📚 Fundamental</b>
+        <div class="time">19:00 — Video berikutnya</div>
+    </div>
+</div>
+
+<div class="schedule">
+    <div class="day">Selasa</div>
+    <div>
+        <b>📚 Fundamental</b>
+        <div class="time">19:00 — Video berikutnya</div>
+    </div>
+</div>
+
+<div class="schedule">
+    <div class="day">Rabu</div>
+    <div>
+        <b>📝 Latsol</b>
+        <div class="time">19:00 — Latihan soal</div>
+    </div>
+</div>
+
+<div class="schedule">
+    <div class="day">Kamis</div>
+    <div>
+        <b>📚 Fundamental</b>
+        <div class="time">19:00 — Video berikutnya</div>
+    </div>
+</div>
+
+<div class="schedule">
+    <div class="day">Jumat</div>
+    <div>
+        <b>🔄 Review</b>
+        <div class="time">19:00 — Review materi</div>
+    </div>
+</div>
+
+<div class="schedule">
+    <div class="day">Sabtu</div>
+    <div>
+        <b>🔥 GAS FUNDAMENTAL</b>
+        <div class="time">09:00 — 11:00</div>
+    </div>
+</div>
+
+<div class="schedule">
+    <div class="day">Minggu</div>
+    <div>
+        <b>📝 Review + Latsol</b>
+        <div class="time">09:00 — 11:00</div>
+    </div>
+</div>
+
+</div>
+
+
+<!-- ROADMAP -->
+
+<div class="card">
+
+<h2>🎯 Roadmap Fundamental 1–52</h2>
+
+<p style="margin-bottom:15px;">
+Klik video yang sudah selesai untuk menandainya.
+</p>
+
+<div class="roadmap" id="roadmap"></div>
+
+</div>
+
+
+<!-- CATAT BELAJAR -->
+
+<div class="card">
+
+<h2>📝 Catat Belajar</h2>
+
+<label>Materi / Video</label>
+
+<input
+    id="materi"
+    placeholder="Contoh: Video 11 — Pembagian">
+
+<label>Latihan soal</label>
+
+<input
+    id="latsol"
+    placeholder="Contoh: 20 soal pembagian">
+
+<label>Catatan</label>
+
+<textarea
+    id="catatan"
+    placeholder="Contoh: Masih bingung bagian...">
+</textarea>
+
+<button onclick="simpanHistori()">
+    💾 Simpan Belajar
+</button>
+
+</div>
+
+
+<!-- HISTORI -->
+
+<div class="card">
+
+<h2>📖 Histori Belajar</h2>
+
+<div id="history"></div>
+
+</div>
+
+
+<!-- ALARM -->
+
+<div class="card">
+
+<h2>⏰ Pengingat Belajar</h2>
+
+<label>Jam belajar</label>
+
+<input
+    type="time"
+    id="alarmTime"
+    value="19:00">
+
+<label>Pesan motivasi</label>
+
+<input
+    id="motivasi"
+    value="BELAJAR KATANYA MAU MASUK ITS 😭">
+
+<button onclick="simpanAlarm()">
+    🔔 Aktifkan Pengingat
+</button>
+
+<p style="margin-top:10px;font-size:13px;color:#777;">
+    Reminder pertama akan muncul 10 menit sebelum waktu belajar.
+</p>
+
+</div>
+
+</div>
+
+
+<!-- POPUP ALARM -->
+
+<div class="alarm" id="alarmPopup">
+
+<div class="alarm-box">
+
+<h2 id="alarmTitle">
+🔔 Waktunya belajar!
+</h2>
+
+<p class="motivation" id="alarmMessage">
+BELAJAR KATANYA MAU MASUK ITS 😭
+</p>
+
+<p>
+📚 Fundamental Matematika
+</p>
+
+<br>
+
+<button onclick="tutupAlarm()">
+    GAS BELAJAR 🔥
+</button>
+
+<button onclick="tundaAlarm()">
+    Tunda 10 Menit
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   DATA
+========================= */
+
+let completed =
+    JSON.parse(localStorage.getItem("completed")) || [];
+
+let historyData =
+    JSON.parse(localStorage.getItem("historyData")) || [];
+
+let alarmData =
+    JSON.parse(localStorage.getItem("alarmData")) || {
+        time: "19:00",
+        message: "BELAJAR KATANYA MAU MASUK ITS 😭"
+    };
+
+
+/* =========================
+   ROADMAP 1-52
+========================= */
+
+function buatRoadmap() {
+
+    const roadmap =
+        document.getElementById("roadmap");
+
+    roadmap.innerHTML = "";
+
+    for(let i = 1; i <= 52; i++) {
+
+        const div =
+            document.createElement("div");
+
+        div.className = "video";
+
+        if(completed.includes(i)) {
+            div.classList.add("done");
+        }
+
+        div.innerHTML = `
+            <b>
+                ${completed.includes(i) ? "✅" : "▶️"}
+                Video ${i}
+            </b>
+            <small>
+                ${completed.includes(i)
+                    ? "Selesai"
+                    : "Belum selesai"}
+            </small>
+        `;
+
+        div.onclick = function() {
+
+            if(completed.includes(i)) {
+
+                completed =
+                    completed.filter(v => v !== i);
+
+            } else {
+
+                completed.push(i);
+
+            }
+
+            localStorage.setItem(
+                "completed",
+                JSON.stringify(completed)
+            );
+
+            buatRoadmap();
+            updateProgress();
+        };
+
+        roadmap.appendChild(div);
+    }
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+function updateProgress() {
+
+    const jumlah =
+        completed.length;
+
+    const persen =
+        Math.round((jumlah / 52) * 100);
+
+    document.getElementById(
+        "progressNumber"
+    ).innerText = persen + "%";
+
+    document.getElementById(
+        "completedNumber"
+    ).innerText = jumlah;
+
+    document.getElementById(
+        "progressFill"
+    ).style.width = persen + "%";
+}
+
+
+/* =========================
+   HISTORI
+========================= */
+
+function simpanHistori() {
+
+    const materi =
+        document.getElementById("materi").value;
+
+    const latsol =
+        document.getElementById("latsol").value;
+
+    const catatan =
+        document.getElementById("catatan").value;
+
+    if(!materi) {
+
+        alert("Isi materi dulu yaa 😭");
+
+        return;
+    }
+
+    const data = {
+
+        materi: materi,
+
+        latsol:
+            latsol || "-",
+
+        catatan:
+            catatan || "-",
+
+        tanggal:
+            new Date().toLocaleString("id-ID")
+    };
+
+    historyData.unshift(data);
+
+    localStorage.setItem(
+        "historyData",
+        JSON.stringify(historyData)
+    );
+
+    document.getElementById("materi").value = "";
+    document.getElementById("latsol").value = "";
+    document.getElementById("catatan").value = "";
+
+    tampilkanHistori();
+
+    alert("Belajar hari ini tersimpan! 🔥");
+}
+
+
+function tampilkanHistori() {
+
+    const history =
+        document.getElementById("history");
+
+    document.getElementById(
+        "historyNumber"
+    ).innerText = historyData.length;
+
+    if(historyData.length === 0) {
+
+        history.innerHTML =
+            "<p style='color:#777;'>Belum ada histori belajar.</p>";
+
+        return;
+    }
+
+    history.innerHTML = "";
+
+    historyData.forEach((item, index) => {
+
+        const div =
+            document.createElement("div");
+
+        div.className =
+            "history-item";
+
+        div.innerHTML = `
+
+            <b>📚 ${item.materi}</b>
+
+            <br>
+
+            <span class="badge">
+                ${item.tanggal}
+            </span>
+
+            <p>
+                📝 Latsol:
+                ${item.latsol}
+            </p>
+
+            <p>
+                💭 ${item.catatan}
+            </p>
+
+            <button
+                class="danger"
+                onclick="hapusHistori(${index})">
+                Hapus
+            </button>
+        `;
+
+        history.appendChild(div);
+
+    });
+}
+
+
+function hapusHistori(index) {
+
+    if(!confirm("Hapus histori ini?")) return;
+
+    historyData.splice(index,1);
+
+    localStorage.setItem(
+        "historyData",
+        JSON.stringify(historyData)
+    );
+
+    tampilkanHistori();
+}
+
+
+/* =========================
+   ALARM
+========================= */
+
+function simpanAlarm() {
+
+    const time =
+        document.getElementById("alarmTime").value;
+
+    const message =
+        document.getElementById("motivasi").value;
+
+    alarmData = {
+        time: time,
+        message: message
+    };
+
+    localStorage.setItem(
+        "alarmData",
+        JSON.stringify(alarmData)
+    );
+
+    if("Notification" in window) {
+
+        Notification.requestPermission();
+    }
+
+    alert(
+        "Pengingat berhasil disimpan! 🔔"
+    );
+}
+
+
+function tampilkanAlarm(judul) {
+
+    document.getElementById(
+        "alarmTitle"
+    ).innerText = judul;
+
+    document.getElementById(
+        "alarmMessage"
+    ).innerText =
+        alarmData.message;
+
+    document.getElementById(
+        "alarmPopup"
+    ).style.display = "flex";
+
+    bunyiAlarm();
+
+    if(
+        "Notification" in window &&
+        Notification.permission === "granted"
+    ) {
+
+        new Notification(
+            judul,
+            {
+                body: alarmData.message
+            }
+        );
+    }
+}
+
+
+function tutupAlarm() {
+
+    document.getElementById(
+        "alarmPopup"
+    ).style.display = "none";
+}
+
+
+function tundaAlarm() {
+
+    tutupAlarm();
+
+    setTimeout(() => {
+
+        tampilkanAlarm(
+            "🚨 WOI, JANGAN MALAS!"
+        );
+
+    }, 10 * 60 * 1000);
+}
+
+
+/* =========================
+   BUNYI
+========================= */
+
+function bunyiAlarm() {
+
+    try {
+
+        const audio =
+            new Audio(
+                "https://actions.google.com/sounds/v1/alarms/alarm_clock.ogg"
+            );
+
+        audio.play();
+
+    } catch(e) {
+
+        console.log(
+            "Audio diblokir browser."
+        );
+    }
+}
+
+
+/* =========================
+   CEK WAKTU
+========================= */
+
+let lastReminder = "";
+
+function cekAlarm() {
+
+    const now =
+        new Date();
+
+    const jam =
+        String(now.getHours())
+        .padStart(2,"0");
+
+    const menit =
+        String(now.getMinutes())
+        .padStart(2,"0");
+
+    const sekarang =
+        jam + ":" + menit;
+
+    const [h,m] =
+        alarmData.time
+        .split(":")
+        .map(Number);
+
+    const waktuBelajar =
+        h * 60 + m;
+
+    const waktuSekarang =
+        now.getHours() * 60 +
+        now.getMinutes();
+
+    const selisih =
+        waktuBelajar -
+        waktuSekarang;
+
+
+    /* 10 MENIT SEBELUM */
+
+    if(
+        selisih === 10 &&
+        lastReminder !== "10-" + sekarang
+    ) {
+
+        tampilkanAlarm(
+            "🔔 10 MENIT LAGI!"
+        );
+
+        lastReminder =
+            "10-" + sekarang;
+    }
+
+
+    /* SAAT BELAJAR */
+
+    if(
+        selisih === 0 &&
+        lastReminder !== "now-" + sekarang
+    ) {
+
+        tampilkanAlarm(
+            "🚨 WAKTUNYA BELAJAR!"
+        );
+
+        lastReminder =
+            "now-" + sekarang;
+    }
+
+}
+
+
+setInterval(
+    cekAlarm,
+    1000
+);
+
+
+/* =========================
+   LOAD DATA
+========================= */
+
+document.getElementById(
+    "alarmTime"
+).value = alarmData.time;
+
+document.getElementById(
+    "motivasi"
+).value = alarmData.message;
+
+buatRoadmap();
+
+updateProgress();
+
+tampilkanHistori();
+
+</script>
+
+</body>
+</html>
