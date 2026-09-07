@@ -296,6 +296,58 @@ footer{
     font-size:50px;
   }
 }
+
+/* ===== FINISHING HOME ===== */
+
+/* Navbar: semua menu tetap bisa diakses */
+.nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  overflow:visible;
+}
+
+.nav button{
+  flex:1 1 auto;
+  min-width:0;
+  white-space:nowrap;
+}
+
+/* Hilangkan gambar/efek Snoopy samar yang keluar dari Hero */
+.hero::before,
+.hero::after{
+  display:none !important;
+}
+
+/* Card Home dibuat lebih compact */
+#home .grid{
+  gap:10px;
+}
+
+#home .grid .stat{
+  min-height:90px;
+}
+
+/* Di HP, navbar jadi 2 baris kalau tidak cukup */
+@media(max-width:700px){
+  .nav{
+    position:static;
+    margin:10px 0 14px;
+    flex-wrap:wrap;
+  }
+
+  .nav button{
+    flex:1 1 calc(20% - 6px);
+    min-width:60px;
+    padding:9px 4px;
+    font-size:11px;
+  }
+
+  #home .grid .stat{
+    min-height:85px;
+  }
+}
+  
 </style>
   
 </head>
