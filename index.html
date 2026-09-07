@@ -532,7 +532,15 @@ function renderAll(){renderSubjects();renderSchedules();renderHistory();renderHo
 
 /* ---------- settings/icon/mascot/audio ---------- */
 function fileData(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result);r.onerror=rej;r.readAsDataURL(file);});}
-function applySettings(){const ls=JSON.parse(localStorage.getItem(LOCAL_SETTINGS_KEY)||"{}");const name=ls.appName||data.settings?.appName||"Study Roadmap";document.title=name;document.getElementById("appName").textContent=name;document.getElementById("nameInput").value=name;const icon=ls.icon||"";document.getElementById("appIcon").src=icon||makeDataIcon();document.getElementById("mascot").src=ls.mascot||makeMascot();}
+function applySettings(){
+  const ls=JSON.parse(localStorage.getItem(LOCAL_SETTINGS_KEY)||"{}");
+  const name=ls.appName||data.settings?.appName||"Study Roadmap";
+  document.title=name;
+  document.getElementById("appName").textContent=name;
+  document.getElementById("nameInput").value=name;
+  document.getElementById("appIcon").src=ls.icon||"./icon-512.png";
+  document.getElementById("mascot").src=ls.mascot||"./icon-512.png";
+}
 function makeDataIcon(){return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="192" height="192"><rect width="100%" height="100%" rx="40" fill="#4f8cff"/><text x="50%" y="58%" text-anchor="middle" font-size="90">📚</text></svg>`);}
 function makeMascot(){return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300"><rect width="100%" height="100%" rx="60" fill="#eaf2ff"/><circle cx="150" cy="145" r="90" fill="white"/><circle cx="120" cy="135" r="10"/><circle cx="180" cy="135" r="10"/><path d="M120 175 Q150 200 180 175" fill="none" stroke="#4f8cff" stroke-width="8"/></svg>`);}
 document.getElementById("saveSettings").onclick=async()=>{const old=JSON.parse(localStorage.getItem(LOCAL_SETTINGS_KEY)||"{}"),obj={...old,appName:document.getElementById("nameInput").value.trim()||"Study Roadmap"};const fi=document.getElementById("iconInput").files[0],fm=document.getElementById("mascotInput").files[0];if(fi)obj.icon=await fileData(fi);if(fm)obj.mascot=await fileData(fm);localStorage.setItem(LOCAL_SETTINGS_KEY,JSON.stringify(obj));data.settings.appName=obj.appName;saveAll();toast("Tampilan disimpan ✨");};
