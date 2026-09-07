@@ -22,11 +22,287 @@ input,textarea,select{width:100%;padding:10px 11px;border:1px solid var(--line);
 .modalWrap{position:fixed;inset:0;background:#0006;display:none;align-items:flex-end;justify-content:center;z-index:20}.modalWrap.show{display:flex}.modal{background:white;width:min(620px,100%);max-height:92vh;overflow:auto;border-radius:22px 22px 0 0;padding:18px}.alarm{position:fixed;inset:0;background:#0009;display:none;align-items:center;justify-content:center;z-index:50;padding:18px}.alarm.show{display:flex}.alarmBox{background:white;border-radius:24px;padding:24px;width:min(430px,100%);text-align:center}.toast{position:fixed;left:50%;bottom:78px;transform:translateX(-50%);background:#172033;color:white;padding:10px 14px;border-radius:12px;display:none;z-index:70}.toast.show{display:block}
 footer{margin-top:18px;color:var(--muted);font-size:12px;text-align:center}@media(max-width:700px){.grid{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.heroTop{align-items:flex-start}.streakNum{font-size:46px}}@media(max-width:430px){.grid{grid-template-columns:1fr}.app{padding:10px 10px 90px}}
 </style>
+
+<style>
+/* ===== SNOOPY V2 THEME ===== */
+:root{
+  --bg:#f8f3e8;
+  --card:#fffdf8;
+  --text:#17233d;
+  --muted:#68738a;
+  --line:#dce1e8;
+  --primary:#172b4d;
+  --primary2:#29466f;
+  --cream:#fff8e8;
+  --yellow:#f5c84b;
+  --danger:#d85b68;
+  --ok:#4d9b72;
+}
+
+body{
+  background:
+    radial-gradient(circle at 10% 5%,#fff8df 0 70px,transparent 71px),
+    linear-gradient(180deg,#f8f3e8 0%,#f4f0e7 100%);
+  color:var(--text);
+}
+
+.app{
+  max-width:1080px;
+  padding:20px 18px 100px;
+}
+
+header{
+  background:var(--card);
+  border:2px solid var(--line);
+  border-radius:24px;
+  padding:12px 14px;
+  box-shadow:0 5px 0 #d9d5cc;
+}
+
+.brand{
+  gap:12px;
+}
+
+.brand img{
+  width:52px;
+  height:52px;
+  border-radius:16px;
+  border:2px solid var(--text);
+  background:var(--cream);
+}
+
+.brand h1{
+  font-size:22px;
+  letter-spacing:-.4px;
+}
+
+.brand small{
+  color:var(--muted);
+}
+
+.nav{
+  background:var(--primary);
+  border:0;
+  border-radius:20px;
+  padding:7px;
+  box-shadow:0 5px 0 #0d1930;
+}
+
+.nav button{
+  color:#fff;
+  font-weight:600;
+  border-radius:14px;
+}
+
+.nav button:hover{
+  background:#29466f;
+}
+
+.nav button.active{
+  background:#fff8e8;
+  color:var(--primary);
+}
+
+.hero{
+  background:var(--primary);
+  color:white;
+  border:0;
+  border-radius:28px;
+  padding:24px;
+  box-shadow:0 7px 0 #0d1930;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:after{
+  content:"🐶";
+  position:absolute;
+  right:145px;
+  bottom:-35px;
+  font-size:105px;
+  opacity:.12;
+  transform:rotate(-8deg);
+}
+
+.hero .muted{
+  color:#d9e1ee;
+}
+
+.streakNum{
+  font-size:60px;
+  letter-spacing:-2px;
+}
+
+.mascot{
+  width:125px;
+  height:125px;
+  border-radius:28px;
+  border:3px solid white;
+  background:var(--cream);
+  box-shadow:0 5px 0 rgba(0,0,0,.2);
+}
+
+.activity{
+  margin-top:18px;
+}
+
+.dot{
+  width:22px;
+  height:22px;
+  border-radius:7px;
+  background:#415575;
+}
+
+.dot.on{
+  background:var(--yellow);
+}
+
+.dot.today{
+  outline:3px solid white;
+}
+
+.card{
+  background:var(--card);
+  border:2px solid var(--line);
+  border-radius:21px;
+  box-shadow:0 4px 0 #ddd8ce;
+}
+
+.stat{
+  min-height:100px;
+}
+
+.stat b{
+  color:var(--primary);
+}
+
+.progress{
+  background:#e8e4da;
+  height:10px;
+}
+
+.progress i{
+  background:var(--primary);
+}
+
+.btn{
+  background:#edf1f6;
+  color:var(--primary);
+  border-radius:13px;
+  font-weight:650;
+}
+
+.btn.primary{
+  background:var(--primary);
+  color:white;
+  box-shadow:0 3px 0 #0d1930;
+}
+
+.btn.primary:hover{
+  background:var(--primary2);
+}
+
+.btn.danger{
+  background:#fff0f1;
+  color:var(--danger);
+}
+
+.btn.gray{
+  background:#e8e8e5;
+  color:#555d69;
+}
+
+.item{
+  background:#fffdf8;
+  border:2px solid var(--line);
+  border-radius:18px;
+}
+
+.tag{
+  background:#fff1b8;
+  color:#6e5711;
+  font-weight:700;
+}
+
+.day{
+  color:var(--primary);
+  font-size:18px;
+}
+
+input,textarea,select{
+  border:2px solid var(--line);
+  border-radius:13px;
+  background:#fff;
+}
+
+input:focus,textarea:focus,select:focus{
+  outline:3px solid #f5c84b55;
+  border-color:var(--primary);
+}
+
+.modal{
+  background:var(--card);
+  border:2px solid var(--line);
+}
+
+.alarmBox{
+  background:var(--cream);
+  border:3px solid var(--primary);
+}
+
+.toast{
+  background:var(--primary);
+}
+
+footer{
+  color:var(--muted);
+}
+
+@media(max-width:700px){
+  .app{
+    padding:12px 10px 95px;
+  }
+
+  header{
+    border-radius:20px;
+  }
+
+  .hero{
+    border-radius:24px;
+  }
+
+  .mascot{
+    width:95px;
+    height:95px;
+  }
+
+  .hero:after{
+    right:75px;
+    font-size:75px;
+  }
+}
+
+@media(max-width:430px){
+  .brand h1{
+    font-size:18px;
+  }
+
+  .brand img{
+    width:46px;
+    height:46px;
+  }
+
+  .streakNum{
+    font-size:50px;
+  }
+}
+</style>
+  
 </head>
 <body>
 <div class="app">
 <header>
-  <div class="brand"><img id="appIcon" alt=""><div><h1 id="appName">Study Roadmap</h1><small id="loginStatus">Belum login</small></div></div>
+<div class="brand"><img id="appIcon" src="./icon-512.png" alt="Snoopy"><div><h1 id="appName">Study Roadmap</h1><small id="loginStatus">Belum login</small></div></div>
   <button class="btn" id="notifyBtn">🔔 Izin notif</button>
 </header>
 
@@ -42,7 +318,7 @@ footer{margin-top:18px;color:var(--muted);font-size:12px;text-align:center}@medi
   <div class="hero">
     <div class="heroTop">
       <div><div class="muted">Streak belajar</div><div class="streakNum" id="currentStreak">0</div><b>🔥 hari berturut-turut</b><div class="muted" id="bestStreak">Best: 0 hari</div></div>
-      <img id="mascot" class="mascot" alt="Mascot">
+      <img id="mascot" class="mascot" src="./icon-512.png" alt="Snoopy mascot">
     </div>
     <div class="activity" id="activity"></div>
   </div>
