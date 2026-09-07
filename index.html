@@ -417,27 +417,91 @@ footer{
 </section>
   
 <section id="settings" class="page">
-  <h2>Settings</h2>
+  <div class="roadmapHead">
+    <div>
+      <span class="eyebrow">⚙️ PERSONALIZE</span>
+      <h2>Settings</h2>
+      <p class="muted">Atur aplikasi sesuai kebutuhanmu ✨</p>
+    </div>
+  </div>
+
   <div class="card form">
     <b>☁️ Akun & Cloud Sync</b>
+
     <input id="email" type="email" placeholder="Email">
     <input id="password" type="password" placeholder="Password">
-    <div class="actions"><button class="btn primary" id="login">Login</button><button class="btn" id="register">Daftar</button><button class="btn gray" id="logout">Logout</button></div>
-    <small class="muted">Data utama disimpan di Firestore per akun.</small>
+
+    <div class="actions">
+      <button class="btn primary" id="login">Login</button>
+      <button class="btn" id="register">Daftar</button>
+      <button class="btn gray" id="logout">Logout</button>
+    </div>
+
+    <small class="muted">
+      Data utama disimpan di Firestore per akun.
+    </small>
   </div>
+
   <div class="card form" style="margin-top:12px">
-    <b>🎨 Tampilan</b>
-    <label>Nama aplikasi<input id="nameInput"></label>
-    <label>Icon/foto aplikasi<input id="iconInput" type="file" accept="image/*"></label>
-    <label>Mascot/foto home<input id="mascotInput" type="file" accept="image/*"></label>
-    <div class="actions"><button class="btn primary" id="saveSettings">Simpan tampilan</button><button class="btn danger" id="resetLocal">Reset tampilan lokal</button><button class="btn" id="installBtn" style="display:none">📲 Pasang aplikasi</button></div>
+    <b>🎨 Tampilan Aplikasi</b>
+
+    <label>
+      Nama aplikasi
+      <input id="nameInput">
+    </label>
+
+    <label>
+      Icon/foto aplikasi
+      <input id="iconInput" type="file" accept="image/*">
+    </label>
+
+    <label>
+      Mascot/foto Home
+      <input id="mascotInput" type="file" accept="image/*">
+    </label>
+
+    <div class="actions">
+      <button class="btn primary" id="saveSettings">
+        Simpan tampilan
+      </button>
+
+      <button class="btn danger" id="resetLocal">
+        Reset tampilan lokal
+      </button>
+
+      <button class="btn" id="installBtn" style="display:none">
+        📲 Pasang aplikasi
+      </button>
+    </div>
   </div>
+
   <div class="card form" style="margin-top:12px">
-    <b>🔊 Alarm</b>
-    <label>Suara alarm<input id="audioInput" type="file" accept="audio/*"></label>
-    <audio id="audioPreview" controls style="width:100%;display:none"></audio>
-    <div class="actions"><button class="btn" id="previewAudio">▶ Preview</button><button class="btn danger" id="deleteAudio">Hapus suara</button></div>
-    <small class="muted">Jadwal adalah sumber waktu alarm. Setiap jadwal memberi reminder 10 menit sebelum dan alarm tepat waktu.</small>
+    <b>🔊 Alarm Belajar</b>
+
+    <label>
+      Suara alarm
+      <input id="audioInput" type="file" accept="audio/*">
+    </label>
+
+    <audio
+      id="audioPreview"
+      controls
+      style="width:100%;display:none">
+    </audio>
+
+    <div class="actions">
+      <button class="btn" id="previewAudio">
+        ▶ Preview
+      </button>
+
+      <button class="btn danger" id="deleteAudio">
+        Hapus suara
+      </button>
+    </div>
+
+    <small class="muted">
+      Jadwal menjadi sumber waktu alarm. Reminder muncul 10 menit sebelum jadwal dan alarm berbunyi tepat waktu.
+    </small>
   </div>
 </section>
 
