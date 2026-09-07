@@ -317,18 +317,52 @@ footer{
 <section id="home" class="page active">
   <div class="hero">
     <div class="heroTop">
-      <div><div class="muted">Streak belajar</div><div class="streakNum" id="currentStreak">0</div><b>🔥 hari berturut-turut</b><div class="muted" id="bestStreak">Best: 0 hari</div></div>
+      <div>
+        <div class="muted">Hai, Valen! 👋</div>
+        <div class="streakNum" id="currentStreak">0</div>
+        <b>🔥 hari berturut-turut</b>
+        <div class="muted" id="bestStreak">Best: 0 hari</div>
+      </div>
+
       <img id="mascot" class="mascot" src="./icon-512.png" alt="Snoopy mascot">
     </div>
+
     <div class="activity" id="activity"></div>
   </div>
+
   <div class="grid">
-    <div class="card stat"><small>Progress</small><b id="progressText">0%</b><div class="progress"><i id="progressBar" style="width:0%"></i></div></div>
-    <div class="card stat"><small>Video selesai</small><b id="doneText">0/0</b></div>
-    <div class="card stat"><small>Riwayat</small><b id="historyText">0</b></div>
+    <div class="card stat">
+      <small>Progress Belajar</small>
+      <b id="progressText">0%</b>
+      <div class="progress">
+        <i id="progressBar" style="width:0%"></i>
+      </div>
+    </div>
+
+    <div class="card stat">
+      <small>Video Selesai</small>
+      <b id="doneText">0/0</b>
+    </div>
+
+    <div class="card stat">
+      <small>Riwayat Belajar</small>
+      <b id="historyText">0</b>
+    </div>
   </div>
-  <div class="card" style="margin-top:12px"><div class="row"><b>⏰ Jadwal berikutnya</b><span class="tag" id="nextReminder">—</span></div><p id="nextSchedule" class="muted">Belum ada jadwal.</p></div>
-  <div class="card" style="margin-top:12px"><b>💬 Motivasi</b><p id="quote">Pelan-pelan, yang penting jalan terus.</p><small class="muted" id="dailySummary"></small></div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="row">
+      <b>⏰ Jadwal Berikutnya</b>
+      <span class="tag" id="nextReminder">—</span>
+    </div>
+    <p id="nextSchedule" class="muted">Belum ada jadwal.</p>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <b>💙 Semangat belajar!</b>
+    <p id="quote">Pelan-pelan, yang penting jalan terus.</p>
+    <small class="muted" id="dailySummary"></small>
+  </div>
 </section>
 
 <section id="roadmap" class="page">
