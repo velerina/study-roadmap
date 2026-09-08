@@ -752,12 +752,115 @@ function openModal(html){document.getElementById("modal").innerHTML=html;documen
 function closeModal(){document.getElementById("modalWrap").classList.remove("show");}
 document.getElementById("modalWrap").onclick=e=>{if(e.target.id==="modalWrap")closeModal();};
 
-document.getElementById("addSubject").onclick=()=>openModal(`<h3>Tambah Subject</h3><div class="form"><input id="mTitle" placeholder="Nama subject"><textarea id="mNote" placeholder="Catatan"></textarea><div class="actions"><button class="btn primary" id="mSave">Simpan</button><button class="btn gray" id="mCancel">Batal</button></div></div>`);
-document.addEventListener("click",e=>{
-  if(e.target.id==="mCancel")closeModal();
-  if(e.target.id==="mSave"){const t=document.getElementById("mTitle").value.trim();if(!t)return toast("Isi nama subject");data.subjects.push({id:uid(),title:t,note:document.getElementById("mNote").value, videos:[]});saveAll();closeModal();}
-});
+document.getElementById("addSubject").onclick=()=>openModal(`
+  <h3>Tambah Subject</h3>
+  <div class="form">
+    <input id="mTitle" placeholder="Nama subject">
+    <textarea id="mNote" placeholder="Catatan"></textarea>
+    <div class="actions">
+      <button class="btn primary" id="mSave">Simpan</button>
+      <button class="btn gray" id="mCancel">Batal</button>
+    </div>
+  </div>
+`);
 
+const addPlaylistBtn=document.createElement("button");
+addPlaylistBtn.className="btn";
+addPlaylistBtn.textContent="📥 Import Playlist";
+document.getElementById("addSubject").parentElement.appendChild(addPlaylistBtn);
+
+addPlaylistBtn.onclick=()=>{
+  if(!data.subjects.length){
+    return toast("Buat subject dulu sebelum import playlist");
+  }
+
+  openModal(`
+    <h3>📥 Import Playlist</h3>
+    <div class="form">
+      <label>Subject
+        <select id="mPlaylistSubject">
+          ${data.subjects.map(s=>`
+            <option value="${s.id}">${esc(s.title)}</option>
+          `).join("")}
+        </select>
+      </label>
+
+      <label>Daftar judul video
+        <textarea id="mPlaylistVideos"
+          style="min-height:260px"
+          placeholder="Video 1&#10;Video 2&#10;Video 3&#10;Video 4&#10;..."></textarea>
+      </label>
+
+      <small class="muted">
+        Satu judul video = satu baris. Jumlah bebas, mau 23, 52, 100+ juga bisa.
+      </small>
+
+      <div class="actions">
+        <button class="btn primary" id="mImportPlaylist">Import</button>
+        <button class="btn gray" id="mCancel">Batal</button>
+      </div>
+    </div>
+  `);
+};
+
+  document.addEventListener("click",e=>{
+  if(e.target.id==="mCancel"){
+    closeModal();
+  }
+
+  if(e.target.id==="mSave"){
+    const t=document.getElementById("mTitle").value.trim();
+
+    if(!t)return toast("Isi nama subject");
+
+    data.subjects.push({
+      id:uid(),
+      title:t,
+      note:document.getElementById("mNote").value,
+      videos:[]
+    });
+
+    saveAll();
+    closeModal();
+  }
+
+  if(e.target.id==="mImportPlaylist"){
+    const sid=document.getElementById("mPlaylistSubject").value;
+    const text=document.getElementById("mPlaylistVideos").value.trim();
+
+    if(!text)return toast("Masukkan daftar video");
+
+    const titles=text
+      .split(/\r?\n/)
+      .map(x=>x.trim())
+      .filter(Boolean);
+
+    if(!titles.length)return toast("Tidak ada video yang bisa diimport");
+
+    const subject=data.subjects.find(s=>s.id===sid);
+
+    if(!subject)return toast("Subject tidak ditemukan");
+
+    const startNumber=subject.videos.length+1;
+
+    titles.forEach((title,i)=>{
+      subject.videos.push({
+        id:uid(),
+        number:startNumber+i,
+        title:title,
+        completed:false,
+        link:"",
+        latsolLink:""
+      });
+    });
+
+    saveAll();
+    closeModal();
+
+    toast(`${titles.length} video berhasil diimport 🎉`);
+  }
+});
+  
 function editSubject(id){
  const s=data.subjects.find(x=>x.id===id);if(!s)return;
  openModal(`<h3>Edit Subject</h3><div class="form"><input id="mTitle" value="${esc(s.title)}"><textarea id="mNote">${esc(s.note||"")}</textarea><div class="actions"><button class="btn primary" id="mSave">Simpan</button><button class="btn gray" id="mCancel">Batal</button></div></div>`);
