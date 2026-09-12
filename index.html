@@ -446,6 +446,233 @@ footer{
   flex-wrap:wrap;
   margin-top:12px;
 }
+
+/* ===== SUBJECT ACCORDION ===== */
+.subjectCard{
+  overflow:hidden;
+}
+
+.subjectToggle{
+  border:0;
+  background:transparent;
+  padding:0;
+  margin:0;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  text-align:left;
+  cursor:pointer;
+  color:#172b4d;
+  font-size:15px;
+}
+
+.subjectChevron{
+  width:18px;
+  font-size:12px;
+  color:#163a8a;
+  flex:none;
+}
+
+.subjectVideos{
+  border-top:1px solid #edf0f5;
+  padding-top:4px;
+  margin-top:10px;
+}
+
+.subjectCard .item{
+  border-radius:15px;
+}
+
+/* ===== SCHEDULE ACCORDION ===== */
+.scheduleDay{
+  background:#fff;
+  border:1px solid #e1e6ee;
+  border-radius:18px;
+  padding:10px;
+  margin-bottom:10px;
+  box-shadow:0 4px 12px rgba(22,58,138,.06);
+}
+
+.scheduleDayToggle{
+  width:100%;
+  border:0;
+  background:transparent;
+  display:flex;
+  align-items:center;
+  gap:9px;
+  padding:7px;
+  cursor:pointer;
+  text-align:left;
+  color:#172b4d;
+}
+
+.scheduleChevron{
+  width:18px;
+  color:#163a8a;
+  font-size:12px;
+}
+
+.scheduleDayToggle small{
+  display:block;
+  margin-top:3px;
+}
+
+.scheduleItems{
+  border-top:1px solid #edf0f5;
+  padding-top:8px;
+  margin-top:5px;
+}
+
+.scheduleEmpty{
+  padding:10px 7px;
+}
+
+/* ===== SUBJECT ACCORDION ===== */
+.subjectCard{
+  border-radius:20px;
+}
+
+.subjectToggle{
+  border:0;
+  background:transparent;
+  padding:0;
+  margin:0;
+  width:100%;
+  text-align:left;
+  cursor:pointer;
+  color:#172b4d;
+}
+
+.subjectToggle span{
+  display:inline-block;
+}
+
+.subjectChevron{
+  display:inline-block;
+  width:22px;
+  font-size:18px;
+  color:#173b70;
+}
+
+.subjectVideos{
+  margin-top:10px;
+}
+
+.subjectCard .actions{
+  display:flex;
+  gap:7px;
+  flex-wrap:wrap;
+}
+
+.subjectCard .item{
+  border-radius:16px;
+  margin-bottom:8px;
+}
+
+.subjectToggle:hover{
+  opacity:.8;
+}  
+
+/* ===== SNOOPY STREAK WIDGET ===== */
+.streakWidget{
+  background:#173b70;
+  color:#fff;
+  border-radius:24px;
+  padding:18px;
+  margin-top:12px;
+  box-shadow:0 8px 20px rgba(23,59,112,.18);
+  overflow:hidden;
+}
+
+.streakWidgetTop{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+
+.streakWidgetTop small{
+  opacity:.8;
+  font-weight:700;
+  letter-spacing:.5px;
+}
+
+.streakWidgetTop h2{
+  margin:4px 0 0;
+  font-size:28px;
+}
+
+.streakWidgetTop p{
+  margin:0;
+  opacity:.8;
+}
+
+.streakWidgetTop img{
+  width:88px;
+  height:88px;
+  object-fit:cover;
+  border-radius:50%;
+  background:#fff;
+  padding:4px;
+}
+
+.streakWeek{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:7px;
+  margin-top:18px;
+}
+
+.streakDay{
+  text-align:center;
+  font-size:11px;
+}
+
+.streakDot{
+  width:28px;
+  height:28px;
+  margin:5px auto 0;
+  border-radius:50%;
+  background:rgba(255,255,255,.2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:13px;
+}
+
+.streakDot.on{
+  background:#fff;
+  color:#173b70;
+}
+
+.streakDot.today{
+  outline:2px solid #f5d76e;
+  outline-offset:2px;
+}
+
+.streakBest{
+  margin-top:15px;
+  padding-top:12px;
+  border-top:1px solid rgba(255,255,255,.18);
+  font-size:13px;
+  opacity:.9;
+}
+
+@media(max-width:700px){
+  .streakWidget{
+    border-radius:20px;
+    padding:16px;
+  }
+
+  .streakWidgetTop img{
+    width:76px;
+    height:76px;
+  }
+
+  .streakWidgetTop h2{
+    font-size:25px;
+  }
+}
   
 </style>
   
@@ -481,6 +708,24 @@ footer{
     <div class="activity" id="activity"></div>
   </div>
 
+<div class="streakWidget" id="streakWidget">
+  <div class="streakWidgetTop">
+    <div>
+      <small>🔥 STREAK BELAJAR</small>
+      <h2><span id="widgetStreak">0</span> hari</h2>
+      <p>berturut-turut</p>
+    </div>
+
+    <img src="./icon-512.png" alt="Snoopy">
+  </div>
+
+  <div class="streakWeek" id="streakWeek"></div>
+
+  <div class="streakBest">
+    Best streak: <b id="widgetBest">0 hari</b>
+  </div>
+</div>
+  
   <div class="grid">
     <div class="card stat">
       <small>Progress Belajar</small>
@@ -883,31 +1128,410 @@ function toggleVideo(sid,vid){
 function deleteVideo(sid,vid){const s=data.subjects.find(x=>x.id===sid);s.videos=s.videos.filter(v=>v.id!==vid);saveAll();}
 function deleteSubject(id){if(!confirm("Hapus subject dan semua videonya?"))return;data.subjects=data.subjects.filter(s=>s.id!==id);saveAll();}
 
+const openSubjects=new Set();
+
 function renderSubjects(){
- const box=document.getElementById("subjectsList");box.innerHTML="";
- data.subjects.forEach(s=>{
-   const total=s.videos.length,done=s.videos.filter(v=>v.completed).length,pct=total?Math.round(done/total*100):0;
-   const el=document.createElement("div");el.className="card";
-   el.innerHTML=`<div class="row"><div><h3 style="margin:0">${esc(s.title)}</h3><small class="muted">${esc(s.note||"")}</small></div><div class="actions"><button class="btn" data-act="editS">Edit</button><button class="btn danger" data-act="delS">Hapus</button></div></div><p>${done}/${total} selesai • ${pct}%</p><div class="progress"><i style="width:${pct}%"></i></div><div class="list" style="margin-top:10px">${s.videos.map(v=>`<div class="item ${v.completed?"videoDone":""}"><div class="row"><div><b>${esc(v.number)}. ${esc(v.title)}</b><div><small class="muted">${v.completed?"✅ selesai":"⬜ belum selesai"}</small></div></div><div class="actions"><button class="btn" data-act="toggle">${v.completed?"Batal":"Selesai"}</button><button class="btn" data-act="editV">Edit</button><button class="btn danger" data-act="delV">×</button></div></div><div class="actions" style="margin-top:7px">${v.link?`<a class="btn" href="${safeUrl(v.link)}" target="_blank" rel="noopener">Materi</a>`:""}${v.latsolLink?`<a class="btn" href="${safeUrl(v.latsolLink)}" target="_blank" rel="noopener">Latihan soal</a>`:""}</div></div>`).join("")}</div><button class="btn primary" data-act="addV" style="margin-top:10px">＋ Video</button>`;
-   el.dataset.sid=s.id;box.appendChild(el);
- });
+  const box=document.getElementById("subjectsList");
+  box.innerHTML="";
+
+  data.subjects.forEach(s=>{
+    const total=s.videos.length;
+    const done=s.videos.filter(v=>v.completed).length;
+    const pct=total?Math.round(done/total*100):0;
+    const isOpen=openSubjects.has(s.id);
+
+    const el=document.createElement("div");
+    el.className="card subjectCard";
+    el.dataset.sid=s.id;
+
+    el.innerHTML=`
+      <div class="row">
+        <div style="min-width:0;flex:1">
+          <button
+            class="subjectToggle"
+            data-act="toggleSubject"
+            type="button"
+          >
+            <span class="subjectChevron">${isOpen?"▼":"▶"}</span>
+            <span>
+              <b>${esc(s.title)}</b>
+              <small class="muted" style="display:block">
+                ${total} video • ${done} selesai
+              </small>
+            </span>
+          </button>
+          <small class="muted">${esc(s.note||"")}</small>
+        </div>
+
+        <div class="actions">
+          <button class="btn" data-act="editS">Edit</button>
+          <button class="btn danger" data-act="delS">Hapus</button>
+        </div>
+      </div>
+
+      <p>${done}/${total} selesai • ${pct}%</p>
+
+      <div class="progress">
+        <i style="width:${pct}%"></i>
+      </div>
+
+      <div
+        class="subjectVideos"
+        style="display:${isOpen?"block":"none"}"
+      >
+        <div class="list" style="margin-top:10px">
+          ${
+            s.videos.map(v=>`
+              <div
+                class="item ${v.completed?"videoDone":""}"
+                data-vid="${v.id}"
+              >
+                <div class="row">
+                  <div>
+                    <b>${esc(v.number)}. ${esc(v.title)}</b>
+                    <div>
+                      <small class="muted">
+                        ${v.completed?"✅ selesai":"⬜ belum selesai"}
+                      </small>
+                    </div>
+                  </div>
+
+                  <div class="actions">
+                    <button class="btn" data-act="toggle">
+                      ${v.completed?"Batal":"Selesai"}
+                    </button>
+
+                    <button class="btn" data-act="editV">
+                      Edit
+                    </button>
+
+                    <button class="btn danger" data-act="delV">
+                      ×
+                    </button>
+                  </div>
+                </div>
+
+                <div class="actions" style="margin-top:7px">
+                  ${
+                    v.link
+                    ? `<a class="btn" href="${safeUrl(v.link)}"
+                         target="_blank" rel="noopener">
+                         Materi
+                       </a>`
+                    : ""
+                  }
+
+                  ${
+                    v.latsolLink
+                    ? `<a class="btn" href="${safeUrl(v.latsolLink)}"
+                         target="_blank" rel="noopener">
+                         Latihan soal
+                       </a>`
+                    : ""
+                  }
+                </div>
+              </div>
+            `).join("")
+          }
+        </div>
+      </div>
+
+      <button
+        class="btn primary"
+        data-act="addV"
+        style="margin-top:10px"
+      >
+        ＋ Video
+      </button>
+    `;
+
+    box.appendChild(el);
+  });
+}
 }
 function safeUrl(x){try{const u=new URL(x);return /^https?:$/.test(u.protocol)?u.href:"#";}catch{return "#";}}
-document.getElementById("subjectsList").onclick=e=>{const el=e.target.closest(".card");if(!el)return;const sid=el.dataset.sid,s=data.subjects.find(x=>x.id===sid);const vEl=e.target.closest(".item"),vid=vEl?.querySelector("b")?.textContent?.split(". ")[0];const v=vEl?s?.videos.find(x=>String(x.number)===String(vid)):null;
-if(e.target.dataset.act==="editS")editSubject(sid);if(e.target.dataset.act==="delS")deleteSubject(sid);if(e.target.dataset.act==="addV")addVideo(sid);if(v&&e.target.dataset.act==="toggle")toggleVideo(sid,v.id);if(v&&e.target.dataset.act==="editV")editVideo(sid,v.id);if(v&&e.target.dataset.act==="delV")deleteVideo(sid,v.id);};
+document.getElementById("subjectsList").onclick=e=>{
+  const el=e.target.closest(".subjectCard");
+  if(!el)return;
 
+  const sid=el.dataset.sid;
+  const act=e.target.closest("[data-act]")?.dataset.act;
+
+  if(act==="toggleSubject"){
+    if(openSubjects.has(sid)){
+      openSubjects.delete(sid);
+    }else{
+      openSubjects.add(sid);
+    }
+
+    renderSubjects();
+    return;
+  }
+
+  if(act==="editS"){
+    editSubject(sid);
+    return;
+  }
+
+  if(act==="delS"){
+    deleteSubject(sid);
+    return;
+  }
+
+  if(act==="addV"){
+    addVideo(sid);
+    return;
+  }
+
+  const vEl=e.target.closest(".item[data-vid]");
+  if(!vEl)return;
+
+  const vid=vEl.dataset.vid;
+
+  if(act==="toggle"){
+    toggleVideo(sid,vid);
+  }
+
+  if(act==="editV"){
+    editVideo(sid,vid);
+  }
+
+  if(act==="delV"){
+    deleteVideo(sid,vid);
+  }
+};
+  
 /* ---------- schedule ---------- */
 document.getElementById("addSchedule").onclick=()=>scheduleModal();
+  // ===== IMPORT JADWAL =====
+const importScheduleBtn=document.createElement("button");
+importScheduleBtn.className="btn";
+importScheduleBtn.textContent="📥 Import Jadwal";
+
+document.getElementById("addSchedule").parentElement.appendChild(importScheduleBtn);
+
+importScheduleBtn.onclick=()=>{
+  openModal(`
+    <h3>📥 Import Jadwal Mingguan</h3>
+
+    <div class="form">
+      <p class="muted">
+        Masukkan beberapa jadwal sekaligus.
+        Satu jadwal = satu baris.
+      </p>
+
+      <textarea
+        id="importScheduleText"
+        style="min-height:260px"
+        placeholder="Senin | 17:00 | UTBK Fundamental
+Senin | 19:00 | PR Sekolah
+Selasa | 17:00 | UTBK Fundamental
+Selasa | 19:00 | Tugas Organisasi
+Rabu | 17:00 | UTBK Fundamental"
+      ></textarea>
+
+      <small class="muted">
+        Format: Hari | Jam | Kegiatan
+      </small>
+
+      <div class="actions">
+        <button class="btn primary" id="doImportSchedule">
+          Import
+        </button>
+
+        <button class="btn gray" id="cancelImportSchedule">
+          Batal
+        </button>
+      </div>
+    </div>
+  `);
+};
+
+document.addEventListener("click",e=>{
+  if(e.target.id==="cancelImportSchedule"){
+    closeModal();
+  }
+
+  if(e.target.id==="doImportSchedule"){
+    const text=document.getElementById("importScheduleText").value.trim();
+
+    if(!text){
+      return toast("Masukkan jadwal dulu");
+    }
+
+    const dayMap={
+      "minggu":0,
+      "senin":1,
+      "selasa":2,
+      "rabu":3,
+      "kamis":4,
+      "jumat":5,
+      "sabtu":6
+    };
+
+    const lines=text
+      .split(/\r?\n/)
+      .map(x=>x.trim())
+      .filter(Boolean);
+
+    let added=0;
+    let failed=0;
+
+    lines.forEach(line=>{
+      const parts=line.split("|").map(x=>x.trim());
+
+      if(parts.length<3){
+        failed++;
+        return;
+      }
+
+      const dayName=parts[0].toLowerCase();
+      const time=parts[1];
+      const task=parts.slice(2).join(" | ");
+
+      if(dayMap[dayName]===undefined){
+        failed++;
+        return;
+      }
+
+      if(!/^\d{1,2}:\d{2}$/.test(time)){
+        failed++;
+        return;
+      }
+
+      data.schedules.push({
+        id:uid(),
+        day:dayMap[dayName],
+        time:time,
+        task:task||"Belajar",
+        note:"",
+        motivation:"Semangat!",
+        enabled:true
+      });
+
+      added++;
+    });
+
+    if(!added){
+      return toast("Format jadwal tidak dikenali");
+    }
+
+    saveAll();
+    closeModal();
+
+    toast(
+      `${added} jadwal berhasil diimport${failed?` • ${failed} baris dilewati`:""} 🎉`
+    );
+  }
+});
 function scheduleModal(id=null){
  const s=id?data.schedules.find(x=>x.id===id):{day:1,time:"16:00",task:"Belajar",note:"",motivation:"Semangat!",enabled:true};
  openModal(`<h3>${id?"Edit":"Tambah"} Jadwal Mingguan</h3><div class="form"><label>Hari<select id="sd">${DAYS.map((d,i)=>`<option value="${i}" ${i==s.day?"selected":""}>${d}</option>`).join("")}</select></label><label>Jam<input id="st" type="time" value="${s.time}"></label><label>Tugas<input id="sk" value="${esc(s.task)}"></label><label>Catatan<textarea id="sn">${esc(s.note||"")}</textarea></label><label>Motivasi<textarea id="sm">${esc(s.motivation||"")}</textarea></label><label><input id="se" type="checkbox" style="width:auto" ${s.enabled!==false?"checked":""}> Alarm aktif</label><button class="btn primary" id="ss">Simpan</button></div>`);
  document.getElementById("ss").onclick=()=>{const obj={id:id||uid(),day:Number(sd.value),time:st.value,task:sk.value.trim()||"Belajar",note:sn.value,motivation:sm.value,enabled:se.checked};if(id)Object.assign(s,obj);else data.schedules.push(obj);saveAll();closeModal();};
 }
+
+const openScheduleDays = new Set();
 function renderSchedules(){
- const box=document.getElementById("scheduleList");box.innerHTML="";
- DAYS.forEach((day,di)=>{const arr=data.schedules.filter(s=>s.day===di).sort((a,b)=>a.time.localeCompare(b.time));if(!arr.length)return;const h=document.createElement("div");h.innerHTML=`<div class="day">${day}</div>`;box.appendChild(h);arr.forEach(s=>{const el=document.createElement("div");el.className="item";el.innerHTML=`<div class="row"><div><b>${esc(s.time)} — ${esc(s.task)}</b><div class="muted">${esc(s.note||"")}</div><small>${s.enabled===false?"🔕 Alarm mati":"🔔 Reminder -10m + alarm tepat waktu"}</small></div><div class="actions"><button class="btn" data-act="edit">Edit</button><button class="btn danger" data-act="del">Hapus</button></div></div><small class="muted">💬 ${esc(s.motivation||"")}</small>`;el.dataset.id=s.id;box.appendChild(el);});});
+  const box = document.getElementById("scheduleList");
+  box.innerHTML = "";
+
+  DAYS.forEach((day, di) => {
+    const arr = data.schedules
+      .filter(s => s.day === di)
+      .sort((a,b) => a.time.localeCompare(b.time));
+
+    const isOpen = openScheduleDays.has(di);
+
+    const dayBox = document.createElement("div");
+    dayBox.className = "scheduleDay";
+    dayBox.dataset.day = di;
+
+    dayBox.innerHTML = `
+      <button
+        class="scheduleDayToggle"
+        data-act="toggleDay"
+        type="button"
+      >
+        <span>
+          <span class="scheduleChevron">${isOpen ? "▼" : "▶"}</span>
+          <b>${day}</b>
+          <small class="muted">
+            ${arr.length ? `${arr.length} jadwal` : "Belum ada jadwal"}
+          </small>
+        </span>
+      </button>
+
+      <div class="scheduleDayContent" style="display:${isOpen ? "block" : "none"}">
+        ${
+          arr.length
+          ? arr.map(s => `
+            <div class="item" data-id="${s.id}">
+              <div class="row">
+                <div>
+                  <b>${esc(s.time)} — ${esc(s.task)}</b>
+                  <div class="muted">${esc(s.note || "")}</div>
+                  <small>
+                    ${s.enabled === false
+                      ? "🔕 Alarm mati"
+                      : "🔔 Reminder -10m + alarm tepat waktu"}
+                  </small>
+                </div>
+
+                <div class="actions">
+                  <button class="btn" data-act="edit">Edit</button>
+                  <button class="btn danger" data-act="del">Hapus</button>
+                </div>
+              </div>
+
+              <small class="muted">
+                💬 ${esc(s.motivation || "")}
+              </small>
+            </div>
+          `).join("")
+          : `<div class="emptySchedule">Belum ada jadwal untuk hari ini.</div>`
+        }
+      </div>
+    `;
+
+    box.appendChild(dayBox);
+  });
 }
-document.getElementById("scheduleList").onclick=e=>{const id=e.target.closest(".item")?.dataset.id;if(!id)return;if(e.target.dataset.act==="edit")scheduleModal(id);if(e.target.dataset.act==="del"){data.schedules=data.schedules.filter(s=>s.id!==id);saveAll();}};
+document.getElementById("scheduleList").onclick = e => {
+
+  const dayBox = e.target.closest(".scheduleDay");
+
+  if(!dayBox) return;
+
+  const act = e.target.closest("[data-act]")?.dataset.act;
+
+  if(act === "toggleDay"){
+    const day = Number(dayBox.dataset.day);
+
+    if(openScheduleDays.has(day)){
+      openScheduleDays.delete(day);
+    }else{
+      openScheduleDays.add(day);
+    }
+
+    renderSchedules();
+    return;
+  }
+
+  const item = e.target.closest(".item");
+
+  if(!item) return;
+
+  const id = item.dataset.id;
+
+  if(act === "edit"){
+    scheduleModal(id);
+  }
+
+  if(act === "del"){
+    data.schedules = data.schedules.filter(s => s.id !== id);
+    saveAll();
+  }
+};
 
 /* ---------- history/home ---------- */
 document.getElementById("historySearch").oninput=renderHistory;
