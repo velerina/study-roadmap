@@ -1248,7 +1248,7 @@ function renderSubjects(){
     box.appendChild(el);
   });
 }
-}
+
 function safeUrl(x){try{const u=new URL(x);return /^https?:$/.test(u.protocol)?u.href:"#";}catch{return "#";}}
 document.getElementById("subjectsList").onclick=e=>{
   const el=e.target.closest(".subjectCard");
